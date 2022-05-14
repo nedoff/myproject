@@ -12,19 +12,24 @@ class TodolistController extends Controller
 
     protected $redirect_url;
 
-    function __construct(){
+    function __construct()
+    {
+
         $this->redirect_url =  route('index');
+
     }
 
 
-    public function index(){
+    public function index()
+    {
 
         $list = Todolist::all();
         return view('index', ['list' => $list]);
 
     }
 
-    public function create(StoreTodolistRequest $request){
+    public function create(StoreTodolistRequest $request)
+    {
 
         $task = Todolist::create([
             'text' => $request->text,
@@ -36,10 +41,12 @@ class TodolistController extends Controller
         }
 
         return redirect($this->redirect_url)->with('success', 'Task added "'.$task->text.'" Sucessful!');
+
     }
 
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $task = Todolist::find($id);
         $deleted = Todolist::where('id', $id)->delete();
@@ -53,7 +60,9 @@ class TodolistController extends Controller
     }
 
 
-    public function done($id){
+    public function done($id)
+    {
+
         $done = Todolist::where('id', $id)->update(['status' => 1]);
         $task = Todolist::find($id);
         if($done == 1){
@@ -61,10 +70,13 @@ class TodolistController extends Controller
         }
 
         return redirect($this->redirect_url)->withErrors('Done Error!');
+
     }
 
 
-    public function undone($id){
+    public function undone($id)
+    {
+
         $undone = Todolist::where('id', $id)->update(['status' => 0]);
         $task = Todolist::find($id);
         if($undone == 1){
@@ -72,5 +84,6 @@ class TodolistController extends Controller
         }
 
         return redirect(route('index'))->withErrors('Undone Error!');
+
     }
 }
