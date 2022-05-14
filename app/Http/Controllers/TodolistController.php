@@ -40,6 +40,7 @@ class TodolistController extends Controller
 
 
     public function delete($id){
+
         $task = Todolist::find($id);
         $deleted = Todolist::where('id', $id)->delete();
 
@@ -48,6 +49,7 @@ class TodolistController extends Controller
         }
 
         return redirect($this->redirect_url)->withErrors('Error!');
+
     }
 
 
