@@ -5,11 +5,11 @@
           var thisCheckboxId = thisCheckbox.val();
           if(thisCheckbox.prop('checked')){
               thisCheckbox.parents('li').addClass('completed');
-              window.location = '/done/'+thisCheckboxId;
+              window.location = '{{ route('done') }}/'+thisCheckboxId;
           }
           else{
               thisCheckbox.parents('li').removeClass('completed');
-              window.location = '/undone/'+thisCheckboxId;
+              window.location = '{{ route('undone') }}/'+thisCheckboxId;
           }
        });
     });

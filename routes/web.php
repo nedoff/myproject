@@ -18,14 +18,13 @@ use App\Http\Controllers\ToDoListController;
 });*/
 
 
-Route::get('/', [TodolistController::class, 'index'])->name('index');
 
-Route::post('/create', [TodolistController::class, 'create'])->name('create');
-
-Route::get('/delete/{id}', [TodolistController::class, 'delete'])->name('delete');
-
-Route::get('/done/{id}', [TodolistController::class, 'done']);
-
-Route::get('/undone/{id}', [TodolistController::class, 'undone']);
+Route::controller(TodolistController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/create', 'create')->name('create');
+    Route::get('/delete/{id}', 'delete')->name('delete');
+    Route::get('/done/{id?}', 'done')->name('done');;
+    Route::get('/undone/{id?}', 'undone')->name('undone');;
+});
 
 
