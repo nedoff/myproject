@@ -45,7 +45,7 @@ class TodolistController extends Controller
     }
 
 
-    public function delete($id)
+    public function delete($id, $xxx = 0)
     {
 
         $task = Todolist::find($id);
