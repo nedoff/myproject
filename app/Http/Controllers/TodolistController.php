@@ -19,7 +19,7 @@ class TodolistController extends Controller
     public function index()
     {
         $list = Todolist::all();
-        $list2 = Todolist::all();
+
 
         return view('index', ['list' => $list]);
     }
