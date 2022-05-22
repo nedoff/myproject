@@ -22,6 +22,7 @@ class TodolistController extends Controller
         $list2 = Todolist::all();
 
 
+
         return view('index', ['list' => $list]);
     }
 
