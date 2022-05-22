@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todolist;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreTodolistRequest;
 
 class TodolistController extends Controller
@@ -21,6 +19,7 @@ class TodolistController extends Controller
     public function index()
     {
         $list = Todolist::all();
+        $list2 = Todolist::all();
 
         return view('index', ['list' => $list]);
     }
@@ -32,9 +31,13 @@ class TodolistController extends Controller
             'status' => 0,
         ]);
 
+
+
         if ( ! $task->id) {
             return redirect($this->redirect_url)->withErrors('Error!');
         }
+
+
 
         return redirect($this->redirect_url)->with('success', 'Task added "'.$task->text.'" Sucessful!');
     }
