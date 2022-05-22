@@ -20,6 +20,7 @@ class TodolistController extends Controller
     {
         $list = Todolist::all();
 
+
         return view('index', ['list' => $list]);
     }
 
@@ -31,12 +32,14 @@ class TodolistController extends Controller
         ]);
 
 
+
         if ( ! $task->id) {
             return redirect($this->redirect_url)->withErrors('Error!');
         }
 
 
-        return redirect($this->redirect_url)->with('success', 'Task added "' . $task->text . '" Sucessful!');
+
+        return redirect($this->redirect_url)->with('success', 'Task added "'.$task->text.'" Sucessful!');
     }
 
 
@@ -46,7 +49,7 @@ class TodolistController extends Controller
         $deleted = Todolist::where('id', $id)->delete();
 
         if ($deleted == 1) {
-            return redirect($this->redirect_url)->with('success', 'Task "' . $task->text . '" removed Sucessful!');
+            return redirect($this->redirect_url)->with('success', 'Task "'.$task->text.'" removed Sucessful!');
         }
 
         return redirect($this->redirect_url)->withErrors('Error!');
@@ -62,9 +65,8 @@ class TodolistController extends Controller
         $done = Todolist::where('id', $id)->update(['status' => 1]);
         $task = Todolist::find($id);
 
-
         if ($done == 1) {
-            return redirect($this->redirect_url)->with('success', 'Task "' . $task->text . '" done Successful!');
+            return redirect($this->redirect_url)->with('success', 'Task "'.$task->text.'" done Successful!');
         }
 
         return redirect($this->redirect_url)->withErrors('Done Error!');
@@ -81,7 +83,7 @@ class TodolistController extends Controller
         $task   = Todolist::find($id);
 
         if ($undone == 1) {
-            return redirect($this->redirect_url)->with('success', 'Task "' . $task->text . '" undone Successful!');
+            return redirect($this->redirect_url)->with('success', 'Task "'.$task->text.'" undone Successful!');
         }
 
         return redirect($this->redirect_url)->withErrors('Undone Error!');
