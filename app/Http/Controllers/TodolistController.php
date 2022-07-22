@@ -8,7 +8,7 @@ use App\Http\Requests\StoreTodolistRequest;
 class TodolistController extends Controller
 {
 
-    protected $redirect_url;
+    protected string $redirect_url;
 
     function __construct()
     {
@@ -18,12 +18,11 @@ class TodolistController extends Controller
 
     public function index()
     {
-        $list  = Todolist::all();
-        $list2 = Todolist::all();
-
+        $list = Todolist::all();
 
         return view('index', ['list' => $list]);
     }
+
 
     public function create(StoreTodolistRequest $request)
     {
@@ -63,6 +62,7 @@ class TodolistController extends Controller
 
         $done = Todolist::where('id', $id)->update(['status' => 1]);
         $task = Todolist::find($id);
+
 
         if ($done == 1) {
             return redirect($this->redirect_url)->with('success', 'Task "' . $task->text . '" done Successful!');
